@@ -11,14 +11,28 @@
 - Paolo Bestagini (paolo.bestagini@polimi.it)
 - Nicolò Bonettini (nicolo.bonettini@polimi.it)
 
-## Usage
-See *example.py*
+Test implementation by:
+- Alberto Casagrande (alberto.casagrande@studenti.unitn.it) - University of Trento
 
-## Test
-```bash
-cd test
-python -m unittest test_prnu.TestPrnu
+## Usage
+### Compute fingerprints of the cameras
 ```
+python3 compute_fingerprints.py
+```
+### Test on images
+```
+python3 test_images.py
+```
+
+### Test on video frames
+```
+python3 test_videos.py
+```
+### Test at video level
+```
+python3 video_level_test.py
+```
+
 Tested with Python >= 3.4
 
 ## Credits
