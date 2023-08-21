@@ -1,0 +1,17 @@
+[[1. 0. 1. 1. 0. 2. 0. 0.]
+ [0. 0. 0. 2. 1. 1. 0. 0.]
+ [0. 0. 4. 0. 1. 0. 0. 0.]
+ [0. 0. 0. 3. 0. 2. 0. 0.]
+ [0. 0. 1. 1. 2. 0. 0. 1.]
+ [0. 0. 0. 0. 0. 4. 1. 0.]
+ [0. 1. 0. 4. 0. 0. 0. 0.]
+ [1. 1. 1. 0. 1. 1. 0. 0.]]
+
+ ['Apple_iPadmini5_Frontal_0', 
+ 'Apple_iPhone13_Frontal_0', 
+ 'Huawei_P20Lite_Frontal_0', 
+ 'Motorola_MotoG6Play_Frontal_0', 
+ 'Samsung_GalaxyA71_Frontal_0', 
+ 'Samsung_GalaxyTabA_Frontal_0', 
+ 'Samsung_GalaxyTabS5e_Frontal_0', 
+ 'Sony_XperiaZ5_Frontal_0']
