@@ -1,0 +1,4 @@
+AUC on PCE 0.80
+Accuracy PCE  0.603
+
+20 frames equally spaced are extracted from each video. Frames are divided into train and test sets.
