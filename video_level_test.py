@@ -33,13 +33,13 @@ def main():
     fingerprint_devices = os.listdir("test/Videos/")
     fingerprint_devices = sorted(np.unique(fingerprint_devices))
     fingerprint_devices.remove('.DS_Store')
-    #for device in fingerprint_devices:
-    #    if("Frontal" in device):
-    #        fingerprint_devices.remove(device)
+    for device in fingerprint_devices:
+        if("Frontal" in device):
+            fingerprint_devices.remove(device)
     # Create a mapping of device names to their corresponding index values
     device_to_index = {device: index for index, device in enumerate(fingerprint_devices)}
 
-    k = np.load("Fingerprints/Videos/512x512_VideoLevel+.npy")
+    k = np.load("Fingerprints/Videos/512x512_VideoLevel+_Rear.npy")
     k = np.stack(k, 0)
 
     cm = np.zeros((len(fingerprint_devices), len(fingerprint_devices)))
