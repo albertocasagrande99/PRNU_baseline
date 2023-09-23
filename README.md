@@ -1,12 +1,8 @@
 
 
-# Python porting of PRNU extractor and helper functions
+# PRNU baseline evaluation on DivNoise
 
-[![DOI](https://zenodo.org/badge/158570703.svg)](https://zenodo.org/badge/latestdoi/158570703)
-[<image src="https://api.travis-ci.org/polimi-ispl/prnu-python.svg?branch=master">](https://travis-ci.org/polimi-ispl/prnu-python)
-
-
-## Authors
+The code is based on [this work](https://github.com/polimi-ispl/prnu-python), whose authors are:
 - Luca Bondi (luca.bondi@polimi.it)
 - Paolo Bestagini (paolo.bestagini@polimi.it)
 - Nicolò Bonettini (nicolo.bonettini@polimi.it)
