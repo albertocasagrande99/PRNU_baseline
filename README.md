@@ -1,6 +1,6 @@
 
 
-# PRNU baseline evaluation on DivNoise
+# PRNU baseline evaluation on DivNoise dataset
 
 The code is based on [this work](https://github.com/polimi-ispl/prnu-python), whose authors are:
 - Luca Bondi (luca.bondi@polimi.it)
