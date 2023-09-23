@@ -1,14 +1,7 @@
 # -*- coding: UTF-8 -*-
 """
-@author: Luca Bondi (luca.bondi@polimi.it)
-@author: Paolo Bestagini (paolo.bestagini@polimi.it)
-@author: Nicolò Bonettini (nicolo.bonettini@polimi.it)
-Politecnico di Milano 2018
-
-Modified by:
-Alberto Casagrande
-Alessio Belli
-University of Trento
+@author: Alberto Casagrande (alberto.casagrande@studenti.unitn.it)
+University of Trento 2023
 """
 
 import os
@@ -38,13 +31,13 @@ def compute_residuals(nat_dirlist):
     print('Computing residuals')
     imgs = []
     for img_path in tqdm.tqdm(nat_dirlist):
-        imgs += [prnu.cut_ctr(np.asarray(Image.open(img_path)), (1024, 1024, 3))]
+        imgs += [prnu.cut_ctr(np.asarray(Image.open(img_path)), (512, 512, 3))]
 
     pool = Pool(cpu_count())   #Pool is used to parallelize the execution of the function extract_single
     w = pool.map(prnu.extract_single, imgs)  #w contains the noise residuals of the natural images
     pool.close()
 
-    np.save("Residuals_1024x1024.npy", w)
+    np.save("Residuals_512x512.npy", w)
 
     w = np.stack(w, 0)
     imgs = []
@@ -67,10 +60,6 @@ def plot_confusion_matrix(cm, name, fingerprint_devices):
 
     disp.ax_.figure.axes[-1].yaxis.set_ticks([0, 0.25, 0.5, 0.75, 1])
     disp.im_.set_clim(0, 1)
-
-    # Access the colorbar from the Axes object
-    #cax = ax.images[-1].colorbar
-    #cax.set_clim(0, 1)
 
     # Increase the font size of x and y ticks
     plt.xticks(fontsize=22)
@@ -169,7 +158,7 @@ def main():
         nat_device = np.concatenate((nat_device, nat_device_sofar))
 
     #Load fingerprints
-    k = np.load("Fingerprints/1024x1024.npy")
+    k = np.load("Fingerprints/Images/512x512.npy")
     k = np.stack(k, 0)
 
     n_values = []
@@ -181,7 +170,7 @@ def main():
 
     #Compute residuals of test images
     w = compute_residuals(nat_dirlist)
-    #w = np.load("Residuals_16x16.npy")
+    #w = np.load("Residuals_512x512.npy")
     #w = np.stack(w, 0)
 
     # Computing Ground Truth
