@@ -46,10 +46,6 @@ def plot_confusion_matrix(cm, name, fingerprint_devices):
     disp.ax_.figure.axes[-1].yaxis.set_ticks([0, 0.25, 0.5, 0.75, 1])
     disp.im_.set_clim(0, 1)
 
-    # Access the colorbar from the Axes object
-    #cax = ax.images[-1].colorbar
-    #cax.set_clim(0, 1)
-
     # Increase the font size of x and y ticks
     plt.xticks(fontsize=22)
     plt.yticks(fontsize=22)
@@ -64,7 +60,7 @@ def plot_device(fingerprint_device, natural_indices, values, label):
     plt.style.use('default')
     plt.rc('xtick', labelsize=14) 
     plt.rc('ytick', labelsize=12)
-    plt.figure(figsize=(8, 8))  # Adjust the values (width, height) as needed
+    plt.figure(figsize=(7, 8))  # Adjust the values (width, height) as needed
     plt.title(str(fingerprint_device) + "'s fingerprint")
     plt.xlabel('Euclidean distance for query images')
 
@@ -101,6 +97,8 @@ def plot_device(fingerprint_device, natural_indices, values, label):
     if unique_indices is not None and len(unique_indices) > 0:
         ticks = range(1, len(unique_indices) + 1)
         labels = unique_indices
+        labels = [d.replace('Frontal', 'F').replace('Rear', 'R') for d in labels]
+        labels = [d.replace('GalaxyTabA', 'TabA').replace('GalaxyTabS5e', 'TabS5e') for d in labels]
         plt.yticks(ticks, labels)
 
         # Set the tick label corresponding to the fingerprint_device to red text color
@@ -140,7 +138,8 @@ def main():
     w = pool.map(prnu.extract_single, imgs)  #w contains the noise residuals of the natural images
     pool.close()
 
-    np.save("512x512_FrameLevel+.npy", w)
+    np.save("512x512_FrameLevel.npy", w)
+    #w = np.load("Residuals/Videos/512x512_FrameLevel+.npy")
     w = np.stack(w, 0)
     imgs = []
 
@@ -160,8 +159,8 @@ def main():
             prnu_pce = prnu.pce(cc2d)['pce']
             pce_values.append(prnu_pce)
             pce_rot[fingerprint_idx, natural_idx] = prnu.pce(cc2d)['pce']
-            natural_indices.append(nat_device[natural_idx])
-        plot_device(fingerprint_devices[fingerprint_idx], natural_indices, pce_values, "PCE")
+            natural_indices.append(nat_device[natural_idx][:-2])
+        plot_device(fingerprint_devices[fingerprint_idx][:-2], natural_indices, pce_values, "PCE")
 
     print('Computing statistics on PCE')
     stats_pce = prnu.stats(pce_rot, gt)
