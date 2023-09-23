@@ -1,14 +1,7 @@
 # -*- coding: UTF-8 -*-
 """
-@author: Luca Bondi (luca.bondi@polimi.it)
-@author: Paolo Bestagini (paolo.bestagini@polimi.it)
-@author: Nicolò Bonettini (nicolo.bonettini@polimi.it)
-Politecnico di Milano 2018
-
-Modified by:
-Alberto Casagrande
-Alessio Belli
-University of Trento
+@author: Alberto Casagrande (alberto.casagrande@studenti.unitn.it)
+University of Trento 2023
 """
 
 import os
@@ -37,7 +30,7 @@ def main():
     Check the detection performance obtained with cross-correlation and PCE
     :return:
     """
-    fingerprint_devices = os.listdir("test/Videos/")
+    fingerprint_devices = os.listdir("test/Dataset/")
     fingerprint_devices = sorted(np.unique(fingerprint_devices))
     fingerprint_devices.remove('.DS_Store')
     
@@ -46,10 +39,8 @@ def main():
         print("Computing fingerprint of " + device)
         if (device != ".DS_Store"):
             imgs = []
-            #ff_dirlist = np.array(sorted(glob('test/Dataset/' + device + '/Images/Flat/JPG/*.jpg')))     #for images
-            ff_dirlist = np.array(sorted(glob('test/Videos/' + device + '/Videos/VideoLevel+/Train/*.jpg')))      #for videos
-            #random.shuffle(ff_dirlist)
-            #ff_dirlist = ff_dirlist[:50]
+            ff_dirlist = np.array(sorted(glob('test/Dataset/' + device + '/Images/Flat/JPG/*.jpg')))     #for images
+            #ff_dirlist = np.array(sorted(glob('test/Videos/' + device + '/Videos/VideoLevel+/Train/*.jpg')))      #for videos
             for img_path in tqdm.tqdm(ff_dirlist):
                 im = Image.open(img_path)
                 im_arr = np.asarray(im)
@@ -62,7 +53,7 @@ def main():
                 im_cut = prnu.cut_ctr(im_arr, (512, 512, 3))
                 imgs += [im_cut]
             k += [prnu.extract_multiple_aligned(imgs, processes=cpu_count())]
-    np.save("512x512_VideoLevel+.npy", k)
+    np.save("512x512.npy", k)
 
 if __name__ == '__main__':
     main()
