@@ -1,4 +1,0 @@
-AUC on PCE 0.82
-Accuracy PCE  0.635
-
-Similar to FrameLevel setting, but in this case I-frames have been used both for train and test sets

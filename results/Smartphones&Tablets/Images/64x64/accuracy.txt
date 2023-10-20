@@ -1,2 +1,0 @@
-AUC on PCE 0.68
-Accuracy PCE  0.297
