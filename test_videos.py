@@ -98,7 +98,6 @@ def plot_device(fingerprint_device, natural_indices, values, label):
         ticks = range(1, len(unique_indices) + 1)
         labels = unique_indices
         labels = [d.replace('Frontal', 'F').replace('Rear', 'R') for d in labels]
-        labels = [d.replace('GalaxyTabA', 'TabA').replace('GalaxyTabS5e', 'TabS5e') for d in labels]
         plt.yticks(ticks, labels)
 
         # Set the tick label corresponding to the fingerprint_device to red text color
