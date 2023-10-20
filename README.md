@@ -32,7 +32,7 @@ python3 test_videos.py
 ```
 python3 video_level_test.py
 ```
-
+The fingerprints of the cameras are saved in the `Fingerprints` directory, while the charts showing the performance of the method are saved in the `plots` folder.
 Tested with Python >= 3.4
 
 ## Credits
