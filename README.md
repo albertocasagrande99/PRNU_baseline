@@ -12,8 +12,8 @@ Test implementation by:
 
 ## Usage
 - Firstly, the dataset has to be included in the `test` folder.
-- Within the `Dataset`, each camera's images must be contained in its respective folder, named as Brand_Model_CameraLocation_ID, where camera location is either Frontal or Rear. In particular, they should be divided into separate Train and Test splits.
-- The images belonging to a specific camera should have the name in the form Brand_Model_CamLocation_ID_Content_X.jpg, where 'Content' identifies the image type (flat or natural) and 'X' is an incremental number (example: Apple_iPadmini5_Frontal_0_Nat_0.jpg)
+- Within the `Dataset`, each camera's images must be contained in its respective folder, named as *Brand_Model_CameraLocation_ID*, where camera location is either *Frontal* or *Rear*. In particular, they should be divided into separate `Train` and `Test` splits.
+- The images belonging to a specific camera should have the name in the form *Brand_Model_CamLocation_ID_Content_X.jpg*, where 'Content' identifies the image type (*flat* or *natural*) and 'X' is an incremental number (example: *Apple_iPadmini5_Frontal_0_Nat_0.jpg*)
 
 ### Compute fingerprints of the cameras
 ```
