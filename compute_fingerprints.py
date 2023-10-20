@@ -53,7 +53,7 @@ def main():
                 im_cut = prnu.cut_ctr(im_arr, (512, 512, 3))
                 imgs += [im_cut]
             k += [prnu.extract_multiple_aligned(imgs, processes=cpu_count())]
-    np.save("512x512.npy", k)
+    np.save("Fingerprints/512x512.npy", k)
 
 if __name__ == '__main__':
     main()
