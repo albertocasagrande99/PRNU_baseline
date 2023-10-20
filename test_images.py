@@ -70,28 +70,6 @@ def plot_confusion_matrix(cm, name, fingerprint_devices):
     plt.clf()
     plt.close()
 
-'''def plot_device(fingerprint_device, natural_indices, values, label, n_values):
-    avgResult = []
-    start_index = 0
-
-    for size in n_values:
-        end_index = start_index + size
-        chunk = values[start_index:end_index]
-        avg_result = np.average(chunk)
-        avgResult.append(avg_result)
-        start_index = end_index
-
-    plt.title('PRNU for ' + str(fingerprint_device))
-    plt.xlabel('query images')
-    plt.ylabel(label)
-
-    plt.bar(np.unique(natural_indices), avgResult)
-    plt.xticks(np.unique(natural_indices), rotation=90)
-    plt.tight_layout()
-    plt.savefig('plots/'+ label + '/' +str(fingerprint_device)+'.png')
-
-    plt.clf()'''
-
 # Horizontal Violin plot with increased font size and coloured violins
 def plot_device(fingerprint_device, natural_indices, values, label):
     plt.style.use('default')
@@ -161,12 +139,9 @@ def main():
     k = np.load("Fingerprints/Images/512x512.npy")
     k = np.stack(k, 0)
 
-    n_values = []
     nat_dirlist = []
     for device in fingerprint_devices:
         nat_dirlist = np.concatenate((nat_dirlist,np.array(sorted(glob('test/Dataset/' + device + '/Images/Natural/JPG/Test/*.jpg')))[:100]))
-        #n_values.append(len(np.array(sorted(glob('test/Dataset/' + device + '/Images/Natural/JPG/Test/*.jpg')))))
-        n_values.append(100)
 
     #Compute residuals of test images
     w = compute_residuals(nat_dirlist)
@@ -177,17 +152,6 @@ def main():
     # gt function return a matrix where the number of rows is equal to the number of cameras used for computing the fingerprints, and number of columns equal to the number of natural images
     # True means that the image is taken with the camera of the specific row
     gt = prnu.gt(fingerprint_devices, nat_device)
-
-    #print('Computing cross correlation')
-    #cc_aligned_rot = prnu.aligned_cc(k, w)['cc']
-    #print('Computing statistics cross correlation')
-    #stats_cc = prnu.stats(cc_aligned_rot, gt)
-
-    #print('AUC on CC {:.2f}, expected {:.2f}'.format(stats_cc['auc'], 0.98))
-    #print("Accuracy CC ",f'{metrics.accuracy_score(gt.argmax(0), cc_aligned_rot.argmax(0)):.3f}')
-    #roc_curve_cc = metrics.RocCurveDisplay(fpr=stats_cc['fpr'], tpr=stats_cc['tpr'], roc_auc=stats_cc['auc'], estimator_name='ROC curve')
-    #roc_curve_cc.plot(linestyle='--', color='blue')
-    #plt.savefig('plots/' +'roc_curve_cc.png')
 
     print('Computing PCE')
     pce_rot = np.zeros((len(fingerprint_devices), len(nat_device)))
